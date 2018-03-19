@@ -34,10 +34,6 @@ def pool(pool_path, save_path='.'):
 def image(image_root, save_path):
     mats = os.listdir(image_root)
 
-    for image in mats:
-        if image.endswith('.mat'):
-
-
 
 if __name__ == '__main__':
     # Pool
@@ -52,7 +48,6 @@ if __name__ == '__main__':
     readMat(example)
     image_root = 'C:\\Users\\Cheng\\Desktop\\PRW-v16.04.20\\annotations\\'
     save_path = 'C:\\Users\\Cheng\\Desktop\\PRW-v16.04.20\\annotation\\Images.mat'
-
 
     # Person
 
