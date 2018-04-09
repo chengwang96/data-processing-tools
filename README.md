@@ -12,3 +12,5 @@ test: 双线性插值
 beautifulsoup: 网页爬虫
 
 lfw_txt: 转换 lfw 数据集的 label 文件
+
+plot_caffe_log_file: 可视化 caffe loss 曲线，针对 python 接口的输出日志

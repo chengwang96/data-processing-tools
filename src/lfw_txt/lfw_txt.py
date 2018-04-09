@@ -21,10 +21,10 @@ def save2labelfile(list):
     labellines = []
     for i in range(len(list)):
         if len(list[i]) == 3:
-            labelline = list[i][0] + '/' + list[i][0] + '_' + list[i][1] + '.jpg' + '\t' + 'original' + '/' + list[i][0] + '/' + list[i][0] + '_' +list[i][2] + '.jpg' + '\t' + '1\n'
+            labelline = list[i][0] + '/' + list[i][0] + '_' + list[i][1] + '.jpg' + '\t' + list[i][0] + '/' + list[i][0] + '_' +list[i][2] + '.jpg' + '\t' + '1\n'
             labellines.append(labelline)
         elif len(list[i]) == 4:
-            labelline = list[i][0] + '/' + list[i][0] + '_' + list[i][1] + '.jpg' + '\t' + 'original' + '/' + list[i][2] + '/' + list[i][2] + '_' + list[i][3] + '.jpg' + '\t' + '0\n'
+            labelline = list[i][0] + '/' + list[i][0] + '_' + list[i][1] + '.jpg' + '\t' + list[i][2] + '/' + list[i][2] + '_' + list[i][3] + '.jpg' + '\t' + '0\n'
             labellines.append(labelline)
     file.writelines(labellines)
     file.close()
