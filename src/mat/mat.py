@@ -1,10 +1,10 @@
 from scipy.io import loadmat, savemat
 import timeit
 import os
-import ipdb
 import numpy as np
 
 DEBUG = True
+
 
 def readMat(mat_file):
     data = loadmat(mat_file)
@@ -20,7 +20,6 @@ def readMat(mat_file):
 
     print('no data!')
     return 0
-
 
 def writeMat(data, save_path='result.mat'):
     start = timeit.default_timer()
@@ -45,7 +44,7 @@ def task(test, images):
 
     print('found {0} test images!'.format(test_images_count))
 
-#-------------- delete > 10000 --------------
+    #-------------- delete > 10000 --------------
     processed_count = 0
     test_index = []
     all_size = []
@@ -98,6 +97,7 @@ def cal_ratio(test, images):
 
     w = []
     h = []
+    size = []
     count = 0
     for i in images['Img'][0]:
         if i[0][0] in test_images_name:
@@ -105,11 +105,16 @@ def cal_ratio(test, images):
             for box in i[2][0]:
                 w.append(int(box[0][0][2]))
                 h.append(int(box[0][0][3]))
+                size.append(int(box[0][0][2]) * int(box[0][0][3]))
 
             if count % 1000 == 0:
                 print("proceeded {0} images.".format(count))
 
-    return sum(w) / sum(h)
+    return sum(w) / sum(h), size
+
+def le(size, threshold):
+    return sum(np.where(size<threshold))
+
 
 if __name__ == '__main__':
     test_path = "pool.mat"
@@ -118,4 +123,5 @@ if __name__ == '__main__':
     images = readMat(image_path)
     # images = task(test, images)
     # writeMat(images, 'NewImages.mat')
-    print(cal_ratio(test, images))
+    _, size = cal_ratio(test, images)
+    print(le(size, 1000))
