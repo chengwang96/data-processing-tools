@@ -1,5 +1,5 @@
 import cv2
-from skimage.measure import compare_ssim
+# from skimage.measure import compare_ssim
 import os
 import os.path as osp
 
@@ -33,7 +33,7 @@ def black2white(X):
             if j[0] == 0 and j[1] == 0 and j[2] == 0:
                 count += 1
                 for k in range(3):
-                    j[k] = 255
+                    j[k] = 0
 
     print(count)
     return X
@@ -41,7 +41,7 @@ def black2white(X):
 if __name__ == '__main__':
     image_root = 'pic'
     save_root = 'new'
-    X_root = osp.join(image_root, 'gan')
+    X_root = osp.join(image_root, 'real')
     Y_root = osp.join(image_root, 'white')
 
     X_images = os.listdir(X_root)
@@ -49,18 +49,18 @@ if __name__ == '__main__':
     ssim = []
 
     for X_image, Y_image in zip(X_images, Y_images):
-        print('{0} vs {1}'.format(X_image, Y_image))
-        X = cv2.imread(osp.join(X_root, X_image))
-        Y = cv2.imread(osp.join(Y_root, Y_image))
-        X = cv2.resize(X, (250, 250), interpolation=cv2.INTER_LANCZOS4)
-        # Y = cv2.resize(Y, (128, 128))
-        result = get_ssim(X, Y)
-        print(result)
-        ssim.append(float(result))
+        # print('{0} vs {1}'.format(X_image, Y_image))
         # X = cv2.imread(osp.join(X_root, X_image))
         # Y = cv2.imread(osp.join(Y_root, Y_image))
+        # X = cv2.resize(X, (250, 250), interpolation=cv2.INTER_LANCZOS4)
+        # result = get_ssim(X, Y)
+        # print(result)
+        # ssim.append(float(result))
+        X = cv2.imread(osp.join(X_root, X_image))
+        Y = cv2.imread(osp.join(Y_root, Y_image))
         # X = black2white(X)
-        # cv2.imwrite(osp.join(save_root, X_image), X)
+        print(X.shape)
+        cv2.imwrite(osp.join(save_root, X_image), X)
 
-    print('average: %f' % (sum(ssim) / len(ssim)))
+    # print('average: %f' % (sum(ssim) / len(ssim)))
     print('done')
