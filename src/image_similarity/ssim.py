@@ -1,5 +1,5 @@
 import cv2
-# from skimage.measure import compare_ssim
+from skimage.measure import compare_ssim
 import os
 import os.path as osp
 
@@ -42,8 +42,8 @@ def black2white(X):
 if __name__ == '__main__':
     image_root = 'pic'
     save_root = 'new'
-    X_root = osp.join(image_root, 'real')
-    Y_root = osp.join(image_root, 'white')
+    X_root = osp.join(image_root, 'sketch_p2p')
+    Y_root = osp.join(image_root, 'sketch_real')
 
     X_images = os.listdir(X_root)
     Y_images = os.listdir(Y_root)

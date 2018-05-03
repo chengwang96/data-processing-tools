@@ -8,9 +8,9 @@ from math import sqrt
 
 def my_ssim(x, y):
     # pdb.set_trace()
-    h = y.shape[0]
-    w = y.shape[1]
-    x = x[:h, :w, :]
+    # h = y.shape[0]
+    # w = y.shape[1]
+    # x = x[:h, :w, :]
     K1 = 0.01; K2 = 0.03; L = 255
     C1 = pow(K1 * L, 2); C2 = pow(K2 * L, 2); C3 = C2 / 2
 
@@ -58,8 +58,8 @@ def ssim(x, y):
 
 
 if __name__ == '__main__':
-    pathX = 'CycleGan_test'
-    pathY = 'real'
+    pathX = 'pic\sketch_cycle'
+    pathY = 'pic\sketch_p2p'
 
     fileX = os.listdir(pathX)
     fileY = os.listdir(pathY)
@@ -72,6 +72,7 @@ if __name__ == '__main__':
         imageY = osp.join(pathY, imageY)
         x = cv2.imread(imageX)
         y = cv2.imread(imageY)
+        # x = cv2.resize(x, (250, 250), interpolation=cv2.INTER_LANCZOS4)
 
         result.append(my_ssim(x, y))
 
