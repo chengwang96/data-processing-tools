@@ -21,6 +21,7 @@ def readMat(mat_file):
     print('no data!')
     return 0
 
+
 def writeMat(data, save_path='result.mat'):
     start = timeit.default_timer()
 
@@ -86,6 +87,7 @@ def task(test, images):
     #     bigger = [int(y) > int(size) >= int(x) for size in all_size]
     #     print('{0} / {1}'.format(sum(bigger), len(all_size)))
 
+
 def cal_ratio(test, images):
     test_images_name = []
     test_images_count = 0
@@ -112,8 +114,10 @@ def cal_ratio(test, images):
 
     return sum(w) / sum(h), size
 
+
 def le(size, threshold):
-    return sum(np.where(size<threshold))
+    size = np.array(size)
+    return sum(sum(np.where(size < threshold)))
 
 
 if __name__ == '__main__':
@@ -124,4 +128,15 @@ if __name__ == '__main__':
     # images = task(test, images)
     # writeMat(images, 'NewImages.mat')
     _, size = cal_ratio(test, images)
-    print(le(size, 1000))
+    while 1:
+        x = int(input('x = '))
+        p2 = le(size, x * x)
+        p3 = le(size, x * x * 4) - p2
+        p4 = le(size, x * x * 16) - p2 - p3
+        p5 = le(size, x * x * 64) - p2 - p3 - p4
+        print((p2 - 0.0) / (p2 + p3 + p4 + p5))
+        print((p3 - 0.0) / (p2 + p3 + p4 + p5))
+        print((p4 - 0.0) / (p2 + p3 + p4 + p5))
+        print((p5 - 0.0) / (p2 + p3 + p4 + p5))
+
+    # print(le(size, 1000))
