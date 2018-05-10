@@ -1,10 +1,7 @@
 import cv2
 import os
-import pdb
 
 
-img = cv2.imread('1.jpg')
-pdb.set_trace()
 dataset_name = 'coco'
 root_dir = "data"
 image_list = os.listdir(root_dir)
