@@ -1,8 +1,8 @@
 root_path = 'pic';
-% X_path = strcat(root_path, '/', 'white', '/');
-% Y_path = strcat(root_path, '/', 'gan', '/');
-X_path = strcat(root_path, '/', 'real', '/');
-Y_path = strcat(root_path, '/', 'CycleGan_test', '/');
+X_path = strcat(root_path, '/', 'white', '/');
+Y_path = strcat(root_path, '/', 'gan', '/');
+% X_path = strcat(root_path, '/', 'real', '/');
+% Y_path = strcat(root_path, '/', 'CycleGan_test', '/');
 
 X_list=dir(fullfile(X_path));
 Y_list=dir(fullfile(Y_path));

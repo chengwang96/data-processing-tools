@@ -1,27 +1,14 @@
-import os, shutil
-import re
+import os
+import pdb
 
-#trainFile = open('train.txt', 'w')
-testFile = open('testall.txt', 'w')
-path = 'allsketch'
-files = os.listdir(path)
 
-for f in files:
-    name = f.split('.')[0]
-    newname = name.zfill(5)
-    newf = newname + '.png'
-    os.rename(os.path.join(path, f), os.path.join(path, newf))
+root = 'train_1000'
+image_dir = 'image_1000'
+txt_dir = 'txt_1000'
 
-print('complete renaming\n')
-files = os.listdir(path)
-files.sort()
+image_files = os.listdir(os.path.join(root, image_dir))
+txt_files = os.listdir(os.path.join(root, txt_dir))
 
-for i, f in enumerate(files):
-    #label = re.findall("\d+", f)[0]
-    label = f.split('.')[0]
-    label = re.sub(r"\b0*([1-9][0-9]*|0)", r"\1", label)
-    testFile.write(f + ' ' + str(i) + '\n')
-    if i % 100 == 0:
-        print('complete %d sketches.\n' % i)
-
-testFile.close()
+for image, txt in zip(image_files, txt_files):
+    print('{0} vs {1}'.format(image[:-4], txt[:-4]))
+    pdb.set_trace()
