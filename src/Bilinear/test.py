@@ -1,29 +1,8 @@
-# from PIL import Image
-# from scipy.io import loadmat, savemat
-# import numpy as np
-# import os
-# import os.path as osp
-
-
-# img = Image.open('1.jpg')
-# print(img.size[0])
-# img = ['sad.jpg.mat', 'sad.jpg.mat']
-# img = [a.split('.')[0] + '.' + a.split('.')[1] for a in img]
-# print(img)
-# all_img = os.listdir('annotations')
-# for img in all_img:
-#     img = loadmat(osp.join('annotations', img))
-#     print(img.keys())
-
-# print(img['box_new'])
-# boxes = np.asarray([b[0] for b in img])
-# boxes[boxes == -2] = -1
-# print(boxes)
 import cv2
-import numpy_array as np
+import numpy as np
 
 
-def Bilinear(img, m, n):
+def bilinear(img, m, n):
     height, width, channels = img.shape
     emptyImage = np.zeros((m, n, channels), np.uint8)
     value = [0, 0, 0]
@@ -62,5 +41,5 @@ elif img.shape[1] <= img.shape[0] < 256:
     target1 = int(target1)
     print('warning: image with size ({0}, {1}) is too small!'.format(img.shape[0], img.shape[1]))
 
-result = Bilinear(img, target1, target2)
+result = bilinear(img, target1, target2)
 cv2.imwrite('256.jpg', result)
