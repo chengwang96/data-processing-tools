@@ -1,10 +1,9 @@
 import os
-import pdb
 
 
-root = 'train_1000'
-image_dir = 'image_1000'
-txt_dir = 'txt_1000'
+root = 'train_9000'
+image_dir = 'image_9000'
+txt_dir = 'txt_9000'
 
 image_files = os.listdir(os.path.join(root, image_dir))
 txt_files = os.listdir(os.path.join(root, txt_dir))
