@@ -1,7 +1,7 @@
 # 数据处理和评价
 [beautifulsoup](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/beautifulsoup): 使用 beautifulsoup 包编写的网页爬虫
 
-[bilinear](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/bilinear): 图片的双线性插值
+[bilinear_interpolation](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/bilinear_interpolation): 图片的双线性插值
 
 [file_op](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/file_op): 文件批量重命名，更新为 os.renames() 方法
 
