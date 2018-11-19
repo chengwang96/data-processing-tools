@@ -1,4 +1,12 @@
 # 数据处理和评价
+NEW*
+
+[optical_flow](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/optical_flow): 利用 opencv 的接口计算光流，并进行视频插帧
+
+[usage_of_matplotlib](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/usage_of_matplotlib): 利用 matplotlib 制作折线图
+
+---
+
 [beautifulsoup](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/beautifulsoup): 使用 beautifulsoup 包编写的网页爬虫
 
 [bilinear_interpolation](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/bilinear_interpolation): 图片的双线性插值
@@ -16,5 +24,4 @@
 [numpy](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/numpy_array): numpy 数组操作
 
 [plot_caffe_log_file](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/plot_caffe_log_file): 针对 caffe python 接口的输出日志，可视化 loss 曲线
-
 ...
