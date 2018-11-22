@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -70,6 +71,27 @@ def plot_9(x, y_list, output_dir=None):
     plt.savefig(filename, dpi=300)
 
 
+def plot_decision(x, y_list, output_dir=None):
+    plt.figure(figsize=(7, 3))
+    labels = ['$2x_2=x_1$', '$2x_2=1-x_1$']
+    for y, this_label in zip(y_list, labels):
+        plt.plot(x, y, label=this_label, linewidth='2')
+
+    plt.plot([0.5, 0.5], [-0.5, 1], label='$x_1=1/2$', linewidth='2')
+
+    if output_dir == None:
+        filename = 'decision.eps'
+    else:
+        filename = os.path.join(output_dir, 'decision.eps')
+
+    plt.legend(loc='upper right', fontsize=15)
+    plt.tick_params(labelsize=17)
+    plt.xlim((-1, 4))
+    plt.grid()
+    plt.tight_layout()
+    plt.savefig(filename, dpi=300)
+
+
 def input_data():
     wb = load_workbook('500.xlsx')
     print(wb.get_sheet_names())
@@ -108,6 +130,14 @@ def input_data3():
     return x, [y1, y2, y3]
 
 
+def input_data4():
+    x = np.arange(-1, 2.5, 0.5)
+    y1 = x/2
+    y2 = (1-x)/2
+
+    return x, [y1, y2]
+
+
 if __name__ == '__main__':
     # x, y1, y2 = input_data()
     # plot_xyy(x, y1, y2)
@@ -115,5 +145,9 @@ if __name__ == '__main__':
     # m, n = input_data2()
     # plot_xy(m, n)
 
-    x, y = input_data3()
-    plot_9(x, y)
+    # x, y = input_data3()
+    # plot_9(x, y)
+
+    # plot_decision_boundary
+    x, y = input_data4()
+    plot_decision(x, y)
