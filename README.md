@@ -1,11 +1,13 @@
 # 数据处理和评价
 NEW*
 
+[caffe_proto2flops](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/caffe_proto2flops): 输入 prototxt 文件，计算 FLOPS 和参数量
+
+---
+
 [optical_flow](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/optical_flow): 利用 opencv 的接口计算光流，并进行视频插帧
 
 [usage_of_matplotlib](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/usage_of_matplotlib): 利用 matplotlib 制作折线图
-
----
 
 [beautifulsoup](https://github.com/zxcvb6958/data-processing-tools/tree/master/src/beautifulsoup): 使用 beautifulsoup 包编写的网页爬虫
 
