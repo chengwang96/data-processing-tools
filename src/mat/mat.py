@@ -117,7 +117,7 @@ def cal_ratio(test, images):
 
 def le(size, threshold):
     size = np.array(size)
-    return sum(sum(np.where(size < threshold)))
+    return sum(size < threshold)
 
 
 if __name__ == '__main__':
