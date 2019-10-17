@@ -1,6 +1,12 @@
-#!/usr/bin/env python
-# usage: python path/to/plot_training_log.py \
-# path/to/log path/to/save/picture
+# encoding: utf-8
+"""
+@author: zxcvb6958
+@date: 2019/10/17
+@last modified: 2019/10/17
+"""
+
+# usage: python main.py path/to/log path/to/save/picture
+
 
 import os
 import sys

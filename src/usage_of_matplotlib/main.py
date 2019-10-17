@@ -1,3 +1,10 @@
+# encoding: utf-8
+"""
+@author: zxcvb6958
+@date: 2019/10/17
+@last modified: 2019/10/17
+"""
+
 import os
 import numpy as np
 import matplotlib
@@ -12,8 +19,8 @@ def plot_xyy(x, y1, y2, output_dir=None):
 
     x = [i/10000 for i in x]
 
-    plt.plot(x, y1, label='MT-PPN$_{cls}$', linewidth='2')
-    plt.plot(x, y2, label='MT-PPN$_{det}$', linewidth='2')
+    plt.plot(x, y1, label='MT-ASD$_{cls}$', linewidth='2')
+    plt.plot(x, y2, label='MT-ASD$_{det}$', linewidth='2')
     if output_dir == None:
         filename = 'loss.eps'
     else:
@@ -30,9 +37,9 @@ def plot_xyy(x, y1, y2, output_dir=None):
 
 
 def plot_xy(x, y_list, output_dir=None):
-    plt.figure(figsize=(7, 4))
-    labels = ['MT-PPN', 'OIM', 'NPSM', 'IAN']
-    shapes = ['o-', '*-', 'x-', 'd-']
+    plt.figure(figsize=(7, 5))
+    labels = ['MT-ASD', 'OIM', 'NPSM', 'IAN', 'MGTS']
+    shapes = ['rv-', '*-', 'x-', 'd-', 'bo-']
     for y, shape, this_label in zip(y_list, shapes, labels):
         plt.plot(x, y, shape, label=this_label, linewidth='2')
 
@@ -111,14 +118,14 @@ def input_data():
 
 def input_data2():
     x = [50, 100, 500, 1000, 2000, 4000]
-    y1 = [85.5, 83.6, 77.3, 73.6, 69.6, 64.7]
+    y1 = [87.2, 85.2, 78.5, 74.2, 70.3, 66.4]
     y2 = [79.4, 75.5, 65.7, 60.8, 56.5, 51.3]
     y3 = [81.6, 77.9, 68, 63.6, 58.3, 53.5]
     y4 = [79.3, 76.3, 66.8, 62.8, 58.7, 54.6]
-    # y5 = [84.8, 83, 76.9, 74, 70.4, 66.5]
+    y5 = [84.8, 83, 76.9, 73.9, 70.2, 66.3]
 
-    # return x, [y1, y2, y3, y4, y5]
-    return x, [y1, y2, y3, y4]
+    return x, [y1, y2, y3, y4, y5]
+    # return x, [y1, y2, y3, y4]
 
 
 def input_data3():
@@ -142,12 +149,12 @@ if __name__ == '__main__':
     # x, y1, y2 = input_data()
     # plot_xyy(x, y1, y2)
 
-    # m, n = input_data2()
-    # plot_xy(m, n)
+    m, n = input_data2()
+    plot_xy(m, n)
 
     # x, y = input_data3()
     # plot_9(x, y)
 
     # plot_decision_boundary
-    x, y = input_data4()
-    plot_decision(x, y)
+    # x, y = input_data4()
+    # plot_decision(x, y)
