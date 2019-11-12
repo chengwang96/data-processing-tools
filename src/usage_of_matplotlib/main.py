@@ -14,23 +14,21 @@ from openpyxl import load_workbook
 matplotlib.rcParams['font.family'] = 'Times New Roman'
 
 
-def plot_xyy(x, y1, y2, output_dir=None):
+def plot_xyy(x, y1, y2, labelx='Epoch', labely='Loss', output_name=None):
     plt.figure(figsize=(6, 3))
 
-    x = [i/10000 for i in x]
-
-    plt.plot(x, y1, label='MT-ASD$_{cls}$', linewidth='2')
-    plt.plot(x, y2, label='MT-ASD$_{det}$', linewidth='2')
-    if output_dir == None:
+    plt.plot(x, y1, label='baseline', linewidth='2')
+    plt.plot(x, y2, label='hard-fine', linewidth='2')
+    if output_name == None:
         filename = 'loss.eps'
     else:
-        filename = os.path.join(output_dir, 'loss.eps')
+        filename = output_name
 
-    plt.xlabel(r"Iterations($\times$10$^4$)", fontsize=16)
-    plt.ylabel('ID loss', fontsize=16)
+    plt.xlabel(labelx, fontsize=16)
+    plt.ylabel(labely, fontsize=16)
     plt.legend(loc='upper right', fontsize=16)
     plt.tick_params(labelsize=16)
-    plt.xlim((0, 9))
+    # plt.xlim((0, 9))
     plt.grid()
     plt.tight_layout()
     plt.savefig(filename, dpi=300)
