@@ -65,6 +65,7 @@ def parse_log(filepath):
 
     return y1, y2, y3
 
+
 def plot_log(x, y, output_dir):
     plt.plot(x, y)
     plt.title('loss curve')
