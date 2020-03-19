@@ -36,7 +36,7 @@ def plot_xyy(x, y1, y2, labelx='Epoch', labely='Loss', output_name=None):
 
 def plot_xy(x, y_list, output_dir=None):
     plt.figure(figsize=(7, 5))
-    labels = ['MT-ASD', 'OIM', 'NPSM', 'IAN', 'MGTS']
+    labels = ['TCTS', 'Reid_driven', 'OIM', 'NPSM', 'MGTS']
     shapes = ['rv-', '*-', 'x-', 'd-', 'bo-']
     for y, shape, this_label in zip(y_list, shapes, labels):
         plt.plot(x, y, shape, label=this_label, linewidth='2')
@@ -48,8 +48,9 @@ def plot_xy(x, y_list, output_dir=None):
 
     plt.xlabel('Gallery Size', fontsize=17)
     plt.ylabel('mAP(%)', fontsize=17)
-    plt.legend(loc='upper right', fontsize=17)
+    plt.legend(loc='best', fontsize=17, framealpha=0.5)
     plt.tick_params(labelsize=17)
+    plt.ylim((30, 100))
     plt.grid()
     plt.tight_layout()
     plt.savefig(filename, dpi=300)
@@ -115,15 +116,14 @@ def input_data():
 
 
 def input_data2():
-    x = [50, 100, 500, 1000, 2000, 4000]
-    y1 = [87.2, 85.2, 78.5, 74.2, 70.3, 66.4]
-    y2 = [79.4, 75.5, 65.7, 60.8, 56.5, 51.3]
-    y3 = [81.6, 77.9, 68, 63.6, 58.3, 53.5]
-    y4 = [79.3, 76.3, 66.8, 62.8, 58.7, 54.6]
+    x = ['50', '100', '500', '1000', '2000', '4000']
+    y1 = [94.5, 93.9, 90.8, 89.3, 86.7, 84.3]
+    y2 = [94.0, 93.2, 89.7, 87.7, 85.1, 82.9]
+    y3 = [79.4, 75.5, 65.7, 60.8, 56.5, 51.3]
+    y4 = [81.6, 77.9, 68, 63.6, 58.3, 53.5]
     y5 = [84.8, 83, 76.9, 73.9, 70.2, 66.3]
 
     return x, [y1, y2, y3, y4, y5]
-    # return x, [y1, y2, y3, y4]
 
 
 def input_data3():
