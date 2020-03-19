@@ -1,11 +1,11 @@
 # encoding: utf-8
 """
-@author: zxcvb6958
+@author: Cheng Wang
 @date: 2019/10/17
 @last modified: 2019/10/17
 """
 
-# usage: python main.py path/to/log
+# usage: python line_chart.py path/to/log
 
 
 import os
