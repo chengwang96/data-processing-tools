@@ -16,22 +16,24 @@ def crop_bbox(data_dir, boxes, save_dir):
     for item in boxes:
         im_name = item['im_name']
         gt_boxes = item['gt_boxes']
+        gt_pids = item['gt_pids']
         det_boxes = item['det_boxes'].astype(int)
         det_scores = item['det_scores']
         if 'det_ious' not in item:
             continue
         det_ious = item['det_ious']
+        det_pids = item['det_pids']
 
         image = cv2.imread(os.path.join(data_dir, im_name))
         for i, gt_box in enumerate(gt_boxes):
-            cv2.imwrite(os.path.join(gt_save_dir, '{}_{}.jpg'.format(im_name.split('.')[0], i)),
+            cv2.imwrite(os.path.join(gt_save_dir, '{}_{}.jpg'.format(im_name.split('.')[0], gt_pids[i])),
                         image[gt_box[1]:gt_box[3], gt_box[0]:gt_box[2], :])
 
         for i, det_box in enumerate(det_boxes):
             size = (det_box[3] - det_box[1]) * (det_box[2] - det_box[0])
-            if 0.6 > det_ious[i] > 0.4 and size > 9000:
+            if 0.95 > det_ious[i] > 0.5 and size > 9000:
                 cv2.imwrite(os.path.join(det_save_dir, '{}_{:.2f}_{:.2f}_{}.jpg'.format(im_name.split('.')[0], det_ious[i],
-                            det_scores[i], i)), image[det_box[1]:det_box[3], det_box[0]:det_box[2], :])
+                            det_scores[i], det_pids[i])), image[det_box[1]:det_box[3], det_box[0]:det_box[2], :])
 
         pbar.update(1)
 

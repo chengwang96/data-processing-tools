@@ -14,6 +14,26 @@ from openpyxl import load_workbook
 matplotlib.rcParams['font.family'] = 'Times New Roman'
 
 
+def plot_xy(x, y, labelx='lr', labely='mAP', output_name='lr.eps'):
+    plt.figure(figsize=(6, 3))
+
+    plt.plot(x, y, linewidth='2')
+
+    if output_name == None:
+        filename = 'loss.eps'
+    else:
+        filename = output_name
+
+    plt.xlabel(labelx, fontsize=16)
+    plt.ylabel(labely, fontsize=16)
+    plt.legend(loc='upper right', fontsize=16)
+    plt.tick_params(labelsize=16)
+    # plt.xlim((0, 9))
+    plt.grid()
+    plt.tight_layout()
+    plt.savefig(filename, dpi=300)
+
+
 def plot_xyy(x, y1, y2, labelx='Epoch', labely='Loss', output_name=None):
     plt.figure(figsize=(6, 3))
 
@@ -141,6 +161,13 @@ def input_data4():
     y2 = (1-x)/2
 
     return x, [y1, y2]
+
+
+def input_lr():
+    x = [0.0, 1.0, 2.0, 5.0, 10.0]
+    y = [ , , 94.5, , ,]
+
+    return x, y
 
 
 if __name__ == '__main__':

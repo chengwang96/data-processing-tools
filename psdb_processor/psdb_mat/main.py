@@ -9,23 +9,26 @@ from scipy.io import loadmat, savemat
 import timeit
 import os
 import numpy as np
+import cv2
+import pickle
+import tqdm
+from common_tools.error import *
 
-DEBUG = True
 
-
-def readMat(mat_file):
+def read_mat(mat_file, output_list):
     data = loadmat(mat_file)
     for key in data.keys():
         if key == 'Img':
-            return data
+            output_list.append(data)
+            return 0
         if not key.startswith('__'):
-            return data[key]
+            output_list += data[key]
+            return 0
 
-    print('no data!')
     return 0
 
 
-def writeMat(data, save_path='result.mat'):
+def write_mat(data, save_path='result.mat'):
     start = timeit.default_timer()
 
     if os.path.exists(save_path):
@@ -110,19 +113,58 @@ def le(size, threshold):
     return sum(size < threshold)
 
 
+def convert_dataset(images):
+    output_train = []
+    output_test = []
+    train, test = load_image_set_index()
+
+    pbar = tqdm.tqdm(total=len(images['Img'][0]))
+    for item in images['Img'][0]:
+        output_item = {}
+        output_item['filename'] = item[0][0]
+        img = cv2.imread(os.path.join('SSM', item[0][0]))
+        output_item['width'] = img.shape[1]
+        output_item['height'] = img.shape[0]
+        output_item['ann'] = {}
+        all_boxes = [a[0][0] for a in item[2][0]]
+        output_item['ann']['bboxes'] = np.array(all_boxes).astype(np.float32)
+        output_item['ann']['labels'] = np.ones(len(all_boxes)).astype(np.int64)
+
+        if item[0][0] in train:
+            output_train.append(output_item)
+        if item[0][0] in test:
+            output_test.append(output_item)
+
+        pbar.update(1)
+
+    with open('mmdet_psdb_train.txt', 'w') as f:
+        pickle.dump(output_train, f)
+    with open('mmdet_psdb_test.txt', 'w') as f:
+        pickle.dump(output_test, f)
+
+
+def load_image_set_index():
+    """
+    Load the indexes for the specific subset (train / test).
+    For PSDB, the index is just the image file name.
+    """
+    # test pool
+    test = loadmat(os.path.join('ann', 'pool.mat'))
+    test = test['pool'].squeeze()
+    test = [str(a[0]) for a in test]
+    # all images
+    all_imgs = loadmat(os.path.join('ann', 'Images.mat'))
+    all_imgs = all_imgs['Img'].squeeze()
+    all_imgs = [str(a[0][0]) for a in all_imgs]
+    # training
+    train = list(set(all_imgs) - set(test))
+    train.sort()
+
+    return train, test
+
+
 if __name__ == '__main__':
-    test_path = "pool.mat"
-    image_path = "Images.mat"
-    test = readMat(test_path)
-    images = readMat(image_path)
-    _, size = cal_ratio(test, images)
-    while 1:
-        x = int(input('x = '))
-        p2 = le(size, x * x)
-        p3 = le(size, x * x * 4) - p2
-        p4 = le(size, x * x * 16) - p2 - p3
-        p5 = le(size, x * x * 64) - p2 - p3 - p4
-        print((p2 - 0.0) / (p2 + p3 + p4 + p5))
-        print((p3 - 0.0) / (p2 + p3 + p4 + p5))
-        print((p4 - 0.0) / (p2 + p3 + p4 + p5))
-        print((p5 - 0.0) / (p2 + p3 + p4 + p5))
+    image_path = 'ann/Images.mat'
+    images = []
+    check_error_code(read_mat(image_path, images))
+    convert_dataset(images[0])
