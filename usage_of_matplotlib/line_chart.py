@@ -14,8 +14,8 @@ from openpyxl import load_workbook
 matplotlib.rcParams['font.family'] = 'Times New Roman'
 
 
-def plot_xy(x, y, labelx='lr', labely='mAP', output_name='lr.eps'):
-    plt.figure(figsize=(6, 3))
+def plot_xy(x, y, labelx='meta learning rate', labely='mAP', output_name='lr.eps'):
+    plt.figure(figsize=(6, 4))
 
     plt.plot(x, y, linewidth='2')
 
@@ -26,7 +26,7 @@ def plot_xy(x, y, labelx='lr', labely='mAP', output_name='lr.eps'):
 
     plt.xlabel(labelx, fontsize=16)
     plt.ylabel(labely, fontsize=16)
-    plt.legend(loc='upper right', fontsize=16)
+    # plt.legend(loc='upper right', fontsize=16)
     plt.tick_params(labelsize=16)
     # plt.xlim((0, 9))
     plt.grid()
@@ -54,26 +54,26 @@ def plot_xyy(x, y1, y2, labelx='Epoch', labely='Loss', output_name=None):
     plt.savefig(filename, dpi=300)
 
 
-def plot_xy(x, y_list, output_dir=None):
-    plt.figure(figsize=(7, 5))
-    labels = ['TCTS', 'Reid_driven', 'OIM', 'NPSM', 'MGTS']
-    shapes = ['rv-', '*-', 'x-', 'd-', 'bo-']
-    for y, shape, this_label in zip(y_list, shapes, labels):
-        plt.plot(x, y, shape, label=this_label, linewidth='2')
-
-    if output_dir == None:
-        filename = 'gallery_size.eps'
-    else:
-        filename = os.path.join(output_dir, 'gallery_size.eps')
-
-    plt.xlabel('Gallery Size', fontsize=17)
-    plt.ylabel('mAP(%)', fontsize=17)
-    plt.legend(loc='best', fontsize=17, framealpha=0.5)
-    plt.tick_params(labelsize=17)
-    plt.ylim((30, 100))
-    plt.grid()
-    plt.tight_layout()
-    plt.savefig(filename, dpi=300)
+# def plot_xy(x, y_list, output_dir=None):
+#     plt.figure(figsize=(7, 5))
+#     labels = ['TCTS', 'Reid_driven', 'OIM', 'NPSM', 'MGTS']
+#     shapes = ['rv-', '*-', 'x-', 'd-', 'bo-']
+#     for y, shape, this_label in zip(y_list, shapes, labels):
+#         plt.plot(x, y, shape, label=this_label, linewidth='2')
+#
+#     if output_dir == None:
+#         filename = 'gallery_size.eps'
+#     else:
+#         filename = os.path.join(output_dir, 'gallery_size.eps')
+#
+#     plt.xlabel('Gallery Size', fontsize=17)
+#     plt.ylabel('mAP(%)', fontsize=17)
+#     plt.legend(loc='best', fontsize=17, framealpha=0.5)
+#     plt.tick_params(labelsize=17)
+#     plt.ylim((30, 100))
+#     plt.grid()
+#     plt.tight_layout()
+#     plt.savefig(filename, dpi=300)
 
 
 def plot_9(x, y_list, output_dir=None):
@@ -164,8 +164,8 @@ def input_data4():
 
 
 def input_lr():
-    x = [0.0, 1.0, 2.0, 5.0, 10.0]
-    y = [ , , 94.5, , ,]
+    x = ['0.0', '1.0', '2.0', '5.0', '10.0']
+    y = [92.4, 93.8, 94.5, 79.3, 53.3]
 
     return x, y
 
@@ -174,7 +174,7 @@ if __name__ == '__main__':
     # x, y1, y2 = input_data()
     # plot_xyy(x, y1, y2)
 
-    m, n = input_data2()
+    m, n = input_lr()
     plot_xy(m, n)
 
     # x, y = input_data3()
