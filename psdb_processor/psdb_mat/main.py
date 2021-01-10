@@ -17,6 +17,9 @@ from common_tools.error import *
 
 def read_mat(mat_file, output_list):
     data = loadmat(mat_file)
+    import ipdb
+    ipdb.set_trace()
+
     for key in data.keys():
         if key == 'Img':
             output_list.append(data)
@@ -164,7 +167,6 @@ def load_image_set_index():
 
 
 if __name__ == '__main__':
-    image_path = 'ann/Images.mat'
+    image_path = 'ann/TestG100.mat'
     images = []
     check_error_code(read_mat(image_path, images))
-    convert_dataset(images[0])
