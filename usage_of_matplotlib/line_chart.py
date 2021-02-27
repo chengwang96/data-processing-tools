@@ -54,26 +54,26 @@ def plot_xyy(x, y1, y2, labelx='Epoch', labely='Loss', output_name=None):
     plt.savefig(filename, dpi=300)
 
 
-# def plot_xy(x, y_list, output_dir=None):
-#     plt.figure(figsize=(7, 5))
-#     labels = ['TCTS', 'Reid_driven', 'OIM', 'NPSM', 'MGTS']
-#     shapes = ['rv-', '*-', 'x-', 'd-', 'bo-']
-#     for y, shape, this_label in zip(y_list, shapes, labels):
-#         plt.plot(x, y, shape, label=this_label, linewidth='2')
-#
-#     if output_dir == None:
-#         filename = 'gallery_size.eps'
-#     else:
-#         filename = os.path.join(output_dir, 'gallery_size.eps')
-#
-#     plt.xlabel('Gallery Size', fontsize=17)
-#     plt.ylabel('mAP(%)', fontsize=17)
-#     plt.legend(loc='best', fontsize=17, framealpha=0.5)
-#     plt.tick_params(labelsize=17)
-#     plt.ylim((30, 100))
-#     plt.grid()
-#     plt.tight_layout()
-#     plt.savefig(filename, dpi=300)
+def plot_xylist(x, y_list, output_dir=None):
+    plt.figure(figsize=(7, 5))
+    labels = ['BTCL', 'TCTS', 'Reid_driven', 'OIM']
+    shapes = ['rv-', '*-', 'x-', 'd-']
+    for y, shape, this_label in zip(y_list, shapes, labels):
+        plt.plot(x, y, shape, label=this_label, linewidth='2')
+
+    if output_dir == None:
+        filename = 'gallery_size.eps'
+    else:
+        filename = os.path.join(output_dir, 'gallery_size.eps')
+
+    plt.xlabel('Gallery Size', fontsize=17)
+    plt.ylabel('mAP(%)', fontsize=17)
+    plt.legend(loc='best', fontsize=17, framealpha=0.5)
+    plt.tick_params(labelsize=17)
+    plt.ylim((30, 100))
+    plt.grid()
+    plt.tight_layout()
+    plt.savefig(filename, dpi=300)
 
 
 def plot_9(x, y_list, output_dir=None):
@@ -137,13 +137,14 @@ def input_data():
 
 def input_data2():
     x = ['50', '100', '500', '1000', '2000', '4000']
-    y1 = [94.5, 93.9, 90.8, 89.3, 86.7, 84.3]
-    y2 = [94.0, 93.2, 89.7, 87.7, 85.1, 82.9]
-    y3 = [79.4, 75.5, 65.7, 60.8, 56.5, 51.3]
-    y4 = [81.6, 77.9, 68, 63.6, 58.3, 53.5]
-    y5 = [84.8, 83, 76.9, 73.9, 70.2, 66.3]
+    y1 = [94.8, 94.2, 91.3, 89.9, 87.7, 85.8]
+    y2 = [94.5, 93.9, 90.8, 89.3, 86.7, 84.3]
+    y3 = [94.0, 93.2, 89.7, 87.7, 85.1, 82.9]
+    y4 = [79.4, 75.5, 65.7, 60.8, 56.5, 51.3]
+    # y4 = [81.6, 77.9, 68, 63.6, 58.3, 53.5]
+    # y5 = [84.8, 83, 76.9, 73.9, 70.2, 66.3]
 
-    return x, [y1, y2, y3, y4, y5]
+    return x, [y1, y2, y3, y4]
 
 
 def input_data3():
@@ -174,8 +175,11 @@ if __name__ == '__main__':
     # x, y1, y2 = input_data()
     # plot_xyy(x, y1, y2)
 
-    m, n = input_lr()
-    plot_xy(m, n)
+    x, y_list = input_data2()
+    plot_xylist(x, y_list)
+
+    # m, n = input_lr()
+    # plot_xy(m, n)
 
     # x, y = input_data3()
     # plot_9(x, y)

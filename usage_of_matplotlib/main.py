@@ -13,7 +13,7 @@ if __name__ == '__main__':
     save_path = 'epoch_0.eps'
     ys = [[2963, 4761, 9326, 19290, 76913], a]
 
-    plot_histogram(x, ys, ['tcts', 'tcts-v2'], tick_label, save_path)
+    plot_histogram(x, ys, ['TCTS', 'BTCL'], tick_label, save_path)
 
     save_path = 'epoch_10.eps'
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
             b[j] += a[j]
 
     ys = [[2963, 4761, 9326, 19290, 76913], b]
-    plot_histogram(x, ys, ['tcts', 'tcts-v2'], tick_label, save_path)
+    plot_histogram(x, ys, ['TCTS', 'BTCL'], tick_label, save_path)
 
     save_path = 'epoch_20.eps'
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
             b[j] += a[j]
 
     ys = [[2963, 4761, 9326, 19290, 76913], b]
-    plot_histogram(x, ys, ['tcts', 'tcts-v2'], tick_label, save_path)
+    plot_histogram(x, ys, ['TCTS', 'BTCL'], tick_label, save_path)
 
     save_path = 'epoch_40.eps'
 
@@ -70,4 +70,4 @@ if __name__ == '__main__':
             b[j] += a[j]
 
     ys = [[2963, 4761, 9326, 19290, 76913], b]
-    plot_histogram(x, ys, ['tcts', 'tcts-v2'], tick_label, save_path)
+    plot_histogram(x, ys, ['TCTS', 'BTCL'], tick_label, save_path)
